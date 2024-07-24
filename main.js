@@ -28,10 +28,20 @@ async function getData() {
 getData().then(() => Logic(entries))
 
 function Logic(entries, searchMode=false) {
+    let trs = document.querySelectorAll(".data-row")
+    let i = 1
+    console.log(trs)
+    for (let tr of trs) {
+        console.log(tr)
+        tr.classList.remove(`r-${i}`)
+        tr.offsetWidth
+        tr.classList.add(`r-${i}`)
+        i++
+    }
     const td = () => document.createElement("td")
 
     if (!searchMode) clearRows()
-
+    
     rows.slice(0,entries).forEach((row, idx) => {
         let arrOfText = Array.from(row.childNodes).map(el => el.innerHTML)
 
@@ -68,7 +78,6 @@ function appendRow(row, td, idx) {
 }
 
 select.addEventListener("change", () => {
-    select.blur()
     entries = select.value
     Logic(entries)
 })
@@ -79,14 +88,20 @@ search.addEventListener("input", (e) => {
 })
 
 previous.addEventListener("click", () => {
-    if (currentIndex - parseInt(entries) < 0) {
-        return
-    }
+    previous.disabled = "false"
     currentIndex -= parseInt(entries)
     Logic(entries)
 })
 
 next.addEventListener("click", () => {
+    // let trs = document.querySelectorAll(".data-row")
+    // let i = 1
+    // console.log(trs)
+    // for (let tr of trs) {
+    //     console.log(tr)
+    //     tr.classList.remove(`r-${i}`)
+    //     tr.classList.add(`r-${i}`)
+    // }
     currentIndex += parseInt(entries)
     Logic(entries)
 })

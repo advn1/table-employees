@@ -11,9 +11,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden; 
 }
 
 .app-container {
+    animation: BottomToTopApp 1s ease;
+
     max-height: 700px;
     max-width: 900px;
     min-width: 300px;
@@ -42,6 +45,11 @@ body {
     margin-right: 5px;
 }
 
+.select select {
+    transition: all 0.3s;
+    background-color: white;
+}
+
 .header .search {
     max-width: 200px;
     background-color: white;
@@ -51,6 +59,10 @@ body {
     gap: 10px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     border-radius: 5px;
+}
+
+.search {
+    transition: all 0.3s;
 }
 
 .search input {
@@ -69,6 +81,12 @@ table {
     height: 40px;
 }
 
+th {
+    max-width: 200px;
+    width: 200px;
+    height: 50px;
+    background-color: white;
+}
 
 th div {
     display: flex;
@@ -88,9 +106,69 @@ td {
     white-space: normal;
 }
 
-tr:not(.header-tr) {
+.data-row {
     height: 50px;
     background-color: white;
+    animation-duration: 0.9s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: backwards;
+    transition: transform 0.1s;
+}
+
+.data-row:hover, .select select:hover, .search:hover {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    transform: scale(1.025);
+}
+
+.r-1 {
+    --start-y: 1800px;
+    animation-name: BottomToTopRow;
+    animation-delay: 0.3s;
+}
+
+.r-2 {
+    --start-y: 1700px;
+    animation-name: BottomToTopRow;
+    animation-delay: 0.35s;
+
+}
+
+.r-3 {
+    --start-y: 1600px;
+    animation-name: BottomToTopRow;
+    animation-delay: 0.4s;
+
+}
+
+.r-4 {
+    --start-y: 1500px;
+    animation-name: BottomToTopRow;
+    animation-delay: 0.45s;
+
+}
+
+.r-5 {
+    --start-y: 1400px;
+    animation-name: BottomToTopRow;
+    animation-delay: 0.5s;
+}
+
+.r-6 {
+    --start-y: 1300px;
+    animation-name: BottomToTopRow;
+    animation-delay: 0.55s;
+}
+
+.r-7 {
+    --start-y: 1200px;
+    animation-name: BottomToTopRow;
+    animation-delay: 0.6s;
+}
+
+.r-8 {
+    --start-y: 1100px;
+    animation-name: BottomToTopRow;
+    animation-delay: 0.65s;
 }
 
 tr td:first-child {
@@ -171,5 +249,24 @@ td, th{
     
     .footer {
         justify-content: center;
+    }
+}
+
+@keyframes BottomToTopRow {
+    from {
+        transform: translateY(var(--start-y));
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes BottomToTopApp {
+    from {
+        transform: translateY(100vh);
+    }
+
+    to {
+        transform: translateY(0);
     }
 }
